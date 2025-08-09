@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Specification - Snuggle</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .banner {
+            width: 100%;
+            height: 240px;
+            background: url('snuggle-banner-sobre.png') center 62%/cover no-repeat;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #37352f;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #37352f;
+            margin: 40px 0 15px 0;
+            border-bottom: none;
+        }
+        h3 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #37352f;
+            margin: 30px 0 10px 0;
+        }
+        .app-summary {
+            background: #f7f6f3;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #ff7849;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f7f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff7849;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: #37352f;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+            color: #37352f;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        .flow-section {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .tech-item {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        strong {
+            color: #37352f;
+            font-weight: 600;
+        }
+        .divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner"></div>
+
+    <div class="content">
+        <h1>Functional Specification – Snuggle</h1>
+
+        <div class="app-summary">
+            <h2>APP SUMMARY</h2>
+            <p><strong>Name:</strong> Snuggle – Birthday Manager</p>
+            <p><strong>Version:</strong> 1.0.61</p>
+            <p><strong>Platform:</strong> Android (Flutter)</p>
+            <p><strong>Languages:</strong> 8 languages (Portuguese, English, Spanish, French, German, Chinese, Arabic, Hindi)</p>
+        </div>
+
+        <div class="section">
+            <h2>IDEA & PURPOSE</h2>
+            <p>Snuggle is a birthday and special date management app that allows users to never forget important dates of friends, family, and relationships. The app offers smart notifications, offline/online synchronization, and sharing via WhatsApp.</p>
+        </div>
+
+        <div class="section">
+            <h2>TARGET AUDIENCE</h2>
+            <ul>
+                <li>People who want to strengthen relationships by remembering important dates</li>
+                <li>Families who want to maintain traditions and celebrate together</li>
+                <li>Couples who value milestones and special anniversaries</li>
+                <li>Professionals who want to maintain good personal relationships</li>
+                <li>Anyone who has ever forgotten an important birthday</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>MAIN FEATURES</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔐 Authentication & Setup</h3>
+                    <ul>
+                        <li>Google login (Firebase Auth)</li>
+                        <li>Automatic language detection</li>
+                        <li>Country and phone configuration</li>
+                        <li>Offline support</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🎂 Birthday Management</h3>
+                    <ul>
+                        <li>Add birthdays manually</li>
+                        <li>Import contacts from phone</li>
+                        <li>Organization by month</li>
+                        <li>Free limit: 20 birthdays</li>
+                        <li>Premium limit: 200 birthdays</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🔔 Smart Notifications</h3>
+                    <ul>
+                        <li>Automatic notifications at 00:01</li>
+                        <li>Custom time notifications</li>
+                        <li>Auto notifications at 11:00 AM</li>
+                        <li>Sound or silent options</li>
+                        <li>Offline operation</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>☁️ Synchronization</h3>
+                    <ul>
+                        <li>Firebase ↔ Local sync</li>
+                        <li>Full offline operation</li>
+                        <li>Automatic cloud backup</li>
+                        <li>Data recovery</li>
+                        <li>Auto sync when online</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📱 Sharing & Deeplinks</h3>
+                    <ul>
+                        <li>WhatsApp sharing</li>
+                        <li>Special invitation links</li>
+                        <li>Receive via deeplinks</li>
+                        <li>Custom messages by language</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>⭐ Premium System</h3>
+                    <ul>
+                        <li>Google Play Billing</li>
+                        <li>200 birthday limit</li>
+                        <li>Exclusive dark theme</li>
+                        <li>No ads</li>
+                        <li>Priority backup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flow-section">
+            <h2>USER FLOW</h2>
+            <h3>First Access</h3>
+            <p>Splash Screen → Authentication → Language/Country Setup → Main Screen</p>
+            
+            <h3>Authenticated User</h3>
+            <p>Splash Screen → Main Screen (Birthdays)</p>
+            
+            <h3>Main Navigation</h3>
+            <p>Main Screen ↔ Side Drawer → Add Birthday → Search → Share → Premium</p>
+        </div>
+
+        <div class="section">
+            <h2>TECHNICAL SPECIFICATIONS</h2>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <strong>Frontend</strong><br>
+                    Flutter 3.0+<br>
+                    Dart 2.17+<br>
+                    Material Design 3
+                </div>
+                <div class="tech-item">
+                    <strong>Backend</strong><br>
+                    Firebase Auth<br>
+                    Cloud Firestore<br>
+                    Cloud Functions
+                </div>
+                <div class="tech-item">
+                    <strong>Notifications</strong><br>
+                    Local Notifications<br>
+                    Alarm Manager<br>
+                    Permission Handler
+                </div>
+                <div class="tech-item">
+                    <strong>Purchases</strong><br>
+                    Google Play Billing<br>
+                    In-App Purchase<br>
+                    Purchase Validation
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h2>COMPATIBILITY</h2>
+            <ul>
+                <li><strong>Android:</strong> 6.0+ (API 23+)</li>
+                <li><strong>Devices:</strong> Tablets and smartphones</li>
+                <li><strong>Orientation:</strong> Portrait and landscape</li>
+                <li><strong>Operation:</strong> Full offline support</li>
+                <li><strong>Size:</strong> ~32MB</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>REQUIRED PERMISSIONS</h2>
+            <ul>
+                <li><strong>Notifications:</strong> To send birthday reminders</li>
+                <li><strong>Contacts:</strong> To import birthdays (optional)</li>
+                <li><strong>Internet:</strong> For synchronization and backup</li>
+                <li><strong>Alarms:</strong> For scheduled notification functionality</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>CONTACT & SUPPORT</h2>
+            <p><strong>Developer:</strong> Bruno Oliveira</p>
+            <p><strong>Email:</strong> snuggle.birthdays@gmail.com</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/brunomecatronica">@brunomecatronica</a></p>
+            <p><strong>Location:</strong> Nova Friburgo, Rio de Janeiro, Brazil</p>
+        </div>
+        
+        <!-- Espaçamento para rolagem sob a barra de navegação -->
+        <div style="height: 120px;"></div>
+    </div>
+</body>
+</html>

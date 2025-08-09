@@ -202,7 +202,7 @@
             background: white;
             color: #37352f;
         }
-        /* Remove a barra do Google Translate que aparece após tradução */
+        /* Remove apenas a barra do Google Translate, mantém funcionalidade */
         .goog-te-banner-frame {
             display: none !important;
         }
@@ -212,15 +212,29 @@
         body {
             top: 0 !important;
         }
-        .skiptranslate {
-            display: none !important;
+        /* Mantém o widget funcional mas remove branding */
+        .goog-te-gadget {
+            font-family: inherit !important;
+            font-size: inherit !important;
         }
-        #google_translate_element .goog-te-gadget-simple {
-            background: none !important;
+        .goog-te-gadget .goog-te-combo {
+            margin: 0 !important;
+            padding: 8px 12px !important;
             border: none !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value {
+            border-radius: 20px !important;
+            background: rgba(247, 246, 243, 0.8) !important;
+            font-size: 13px !important;
             color: #37352f !important;
+            cursor: pointer !important;
+            outline: none !important;
+            min-width: 140px !important;
+        }
+        .goog-te-gadget .goog-te-combo:hover {
+            background: rgba(247, 246, 243, 1) !important;
+        }
+        .goog-te-gadget .goog-te-combo:focus {
+            background: rgba(247, 246, 243, 1) !important;
+            box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3) !important;
         }
     </style>
 </head>

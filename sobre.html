@@ -190,39 +190,42 @@
             background: white;
             color: #37352f;
         }
-        /* Remove COMPLETAMENTE a barra do Google Translate */
+        /* Remove apenas elementos visuais, mantém funcionalidade */
         .goog-te-banner-frame {
             display: none !important;
-            visibility: hidden !important;
-            height: 0 !important;
-            position: absolute !important;
-            top: -9999px !important;
         }
         .goog-te-ftab {
             display: none !important;
-            visibility: hidden !important;
         }
         body {
             top: 0 !important;
         }
-        html.translated-ltr,
-        html.translated-rtl {
-            top: 0 !important;
-        }
         body.translated-ltr,
         body.translated-rtl {
-            top: 0 !important;
             margin-top: 0 !important;
         }
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        }
-        /* Mantém o widget funcional mas remove branding */
+        /* Estilo personalizado para o dropdown funcional */
         .goog-te-gadget {
             font-family: inherit !important;
             font-size: inherit !important;
         }
-        .goog-te-gadget .goog-te-combo {
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            font-size: inherit !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value {
+            color: #37352f !important;
+            font-size: 13px !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #37352f !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value:before {
+            content: "🌐 ";
+            margin-right: 5px;
+        }
+        .goog-te-combo {
             margin: 0 !important;
             padding: 8px 12px !important;
             border: none !important;
@@ -234,10 +237,11 @@
             outline: none !important;
             min-width: 140px !important;
         }
-        .goog-te-gadget .goog-te-combo:hover {
+        .goog-te-combo:hover {
             background: rgba(247, 246, 243, 1) !important;
+            transform: scale(1.02);
         }
-        .goog-te-gadget .goog-te-combo:focus {
+        .goog-te-combo:focus {
             background: rgba(247, 246, 243, 1) !important;
             box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3) !important;
         }

@@ -7,89 +7,54 @@
     <meta name="google-translate-customization" content="auto">
     <title>Snuggle - Birthday Manager</title>
     
-    <!-- Tradução automática melhorada -->
+    <!-- Sistema de tradução invisível e elegante -->
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-            // Detecta idioma do navegador/dispositivo
-            var userLang = navigator.language || navigator.userLanguage;
-            var detectedLang = userLang.substring(0, 2);
+        // Detecta idioma e configura tradução automática
+        (function() {
+            var userLang = (navigator.language || navigator.userLanguage).substring(0, 2);
+            var supportedLangs = { pt: 'Portuguese', es: 'Spanish', fr: 'French', de: 'German', zh: 'Chinese', ar: 'Arabic', hi: 'Hindi', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian' };
             
-            console.log('🌐 Idioma detectado:', userLang, '-> Código:', detectedLang);
-            
-            // Lista de idiomas suportados
-            var supportedLangs = ['pt', 'es', 'fr', 'de', 'zh', 'ar', 'hi', 'it', 'ja', 'ko', 'ru'];
-            
-            // Cria o elemento do Google Translate sempre
-            var translateDiv = document.createElement('div');
-            translateDiv.id = 'google_translate_element';
-            translateDiv.style.position = 'fixed';
-            translateDiv.style.top = '-9999px';
-            translateDiv.style.left = '-9999px';
-            translateDiv.style.visibility = 'hidden';
-            translateDiv.style.opacity = '0';
-            document.body.appendChild(translateDiv);
-            
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'pt,es,fr,de,zh,zh-cn,zh-tw,ar,hi,it,ja,ko,ru,en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false,
-                gaTrack: false,
-                gaId: ''
-            }, 'google_translate_element');
-            
-            // Só traduz se não for inglês e for suportado
-            if (detectedLang !== 'en' && supportedLangs.includes(detectedLang)) {
-                console.log('✅ Iniciando tradução automática para:', detectedLang);
+            if (userLang !== 'en' && supportedLangs[userLang]) {
+                console.log('🌍 Auto-translating to:', supportedLangs[userLang]);
                 
-                // Função para tentar traduzir
-                function attemptTranslation(attempts) {
-                    if (attempts > 10) {
-                        console.log('❌ Falha na tradução após 10 tentativas');
-                        return;
-                    }
+                // Carrega Google Translate de forma completamente invisível
+                var script = document.createElement('script');
+                script.src = '//translate.google.com/translate_a/element.js?cb=initGoogleTranslate';
+                
+                window.initGoogleTranslate = function() {
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en',
+                        includedLanguages: userLang,
+                        autoDisplay: false
+                    }, 'google_translate_element');
                     
-                    var selectElement = document.querySelector('.goog-te-combo');
-                    if (selectElement && selectElement.options.length > 1) {
-                        console.log('🔄 Tentativa', attempts, '- Traduzindo para:', detectedLang);
-                        
-                        // Procura a opção do idioma detectado
-                        for (var i = 0; i < selectElement.options.length; i++) {
-                            if (selectElement.options[i].value === detectedLang) {
-                                selectElement.selectedIndex = i;
-                                selectElement.value = detectedLang;
-                                
-                                // Dispara eventos
-                                var changeEvent = new Event('change', { bubbles: true });
-                                selectElement.dispatchEvent(changeEvent);
-                                
-                                var clickEvent = new Event('click', { bubbles: true });
-                                selectElement.dispatchEvent(clickEvent);
-                                
-                                console.log('✅ Tradução disparada para:', detectedLang);
-                                return;
+                    // Aguarda e executa tradução
+                    setTimeout(function() {
+                        var attempts = 0;
+                        var translate = setInterval(function() {
+                            var combo = document.querySelector('.goog-te-combo');
+                            if (combo && combo.options.length > 1) {
+                                combo.value = userLang;
+                                combo.dispatchEvent(new Event('change'));
+                                clearInterval(translate);
+                                console.log('✅ Translated successfully');
+                            } else if (++attempts > 20) {
+                                clearInterval(translate);
+                                console.log('⚠️ Translation timeout');
                             }
-                        }
-                        
-                        console.log('⚠️ Idioma não encontrado nas opções');
-                    } else {
-                        // Tenta novamente após 500ms
-                        setTimeout(function() {
-                            attemptTranslation(attempts + 1);
-                        }, 500);
-                    }
-                }
+                        }, 250);
+                    }, 1000);
+                };
                 
-                // Inicia tentativas de tradução após 1 segundo
-                setTimeout(function() {
-                    attemptTranslation(1);
-                }, 1000);
-            } else {
-                console.log('ℹ️ Mantendo idioma original (inglês) ou idioma não suportado');
+                // Cria container invisível
+                var div = document.createElement('div');
+                div.id = 'google_translate_element';
+                div.style.cssText = 'position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;';
+                document.body.appendChild(div);
+                document.head.appendChild(script);
             }
-        }
+        })();
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
     <style>
         body {
@@ -189,15 +154,52 @@
             color: #888;
             font-size: 0.9em;
         }
-        /* Remove completamente elementos do Google Translate */
+        /* Oculta TODOS os elementos do Google Translate de forma profissional */
         .goog-te-banner-frame,
         .goog-te-ftab,
-        #google_translate_element {
+        .goog-te-menu-frame,
+        .goog-te-combo,
+        .goog-te-gadget,
+        .goog-te-gadget-simple,
+        .goog-te-gadget-icon,
+        #google_translate_element,
+        #goog-gt-tt,
+        .goog-tooltip,
+        .goog-text-highlight,
+        .goog-te-spinner-pos {
             display: none !important;
             visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            z-index: -9999 !important;
         }
+        
+        /* Força posicionamento normal da página */
         body {
             top: 0 !important;
+            position: relative !important;
+            margin-top: 0 !important;
+        }
+        
+        html {
+            margin-top: 0 !important;
+        }
+        
+        /* Remove transformações aplicadas pelo Google Translate */
+        body.translated-ltr,
+        body.translated-rtl,
+        html.translated-ltr,
+        html.translated-rtl {
+            top: 0 !important;
+            margin-top: 0 !important;
+            position: relative !important;
         }
         .app-info {
             background: #e3f2fd;

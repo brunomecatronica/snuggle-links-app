@@ -7,12 +7,16 @@
     <meta name="google-translate-customization" content="auto">
     <title>Privacy Policy - Snuggle Birthday Manager</title>
     
-    <!-- Sistema de tradução invisível e elegante -->
+    <!-- Sistema de tradução invisível otimizado para mobile/desktop -->
     <script type="text/javascript">
         // Detecta idioma e configura tradução automática
         (function() {
-            var userLang = (navigator.language || navigator.userLanguage).substring(0, 2);
+            // Detecção aprimorada para dispositivos móveis
+            var userLang = (navigator.language || navigator.userLanguage || navigator.browserLanguage || 'en').substring(0, 2);
             var supportedLangs = { pt: 'Portuguese', es: 'Spanish', fr: 'French', de: 'German', zh: 'Chinese', ar: 'Arabic', hi: 'Hindi', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian' };
+            var isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            console.log('📱 Device:', isMobile ? 'Mobile/Tablet' : 'Desktop', '| Language:', userLang);
             
             if (userLang !== 'en' && supportedLangs[userLang]) {
                 console.log('🌍 Auto-translating to:', supportedLangs[userLang]);
@@ -28,7 +32,11 @@
                         autoDisplay: false
                     }, 'google_translate_element');
                     
-                    // Aguarda e executa tradução
+                    // Aguarda e executa tradução (tempo ajustado para mobile)
+                    var initialDelay = isMobile ? 1500 : 1000;
+                    var intervalTime = isMobile ? 300 : 250;
+                    var maxAttempts = isMobile ? 25 : 20;
+                    
                     setTimeout(function() {
                         var attempts = 0;
                         var translate = setInterval(function() {
@@ -37,21 +45,23 @@
                                 combo.value = userLang;
                                 combo.dispatchEvent(new Event('change'));
                                 clearInterval(translate);
-                                console.log('✅ Translated successfully');
-                            } else if (++attempts > 20) {
+                                console.log('✅ Translated successfully on', isMobile ? 'mobile' : 'desktop');
+                            } else if (++attempts > maxAttempts) {
                                 clearInterval(translate);
-                                console.log('⚠️ Translation timeout');
+                                console.log('⚠️ Translation timeout on', isMobile ? 'mobile' : 'desktop');
                             }
-                        }, 250);
-                    }, 1000);
+                        }, intervalTime);
+                    }, initialDelay);
                 };
                 
                 // Cria container invisível
                 var div = document.createElement('div');
                 div.id = 'google_translate_element';
-                div.style.cssText = 'position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;';
+                div.style.cssText = 'position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;visibility:hidden!important;';
                 document.body.appendChild(div);
                 document.head.appendChild(script);
+            } else {
+                console.log('ℹ️ Keeping original language (English) on', isMobile ? 'mobile' : 'desktop');
             }
         })();
     </script>

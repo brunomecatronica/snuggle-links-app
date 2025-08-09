@@ -20,7 +20,7 @@
         .banner {
             width: 100%;
             height: 240px;
-            background: url('snuggle-banner-sobre.png') center 65%/cover no-repeat;
+            background: url('snuggle-banner-sobre.png') center 65%/contain no-repeat;
             margin-bottom: 0;
             position: relative;
             overflow: hidden;
@@ -105,6 +105,10 @@
             }
             h2 {
                 font-size: 1.5em;
+            }
+            .banner {
+                height: 200px;
+                background: url('snuggle-banner-sobre.png') center 65%/contain no-repeat;
             }
         }
     </style>

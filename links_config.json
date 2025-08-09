@@ -2,19 +2,19 @@
   "links": [
     {
       "title": "Sobre",
-      "url": "https://raw.githubusercontent.com/brunomecatronica/snuggle-links-app/main/sobre.html",
+      "url": "https://brunomecatronica.github.io/snuggle-links-app/sobre.html",
       "openInBrowser": false
     },
     {
       "title": "Política de Privacidade",
-      "url": "https://raw.githubusercontent.com/brunomecatronica/snuggle-links-app/main/privacidade.html",
+      "url": "https://brunomecatronica.github.io/snuggle-links-app/privacidade.html",
       "openInBrowser": false
     }
   ],
   "copyright": {
     "enabled": true,
     "author_name": "Bruno Oliveira",
-    "link_url": "https://github.com/brunomecatronica",
+    "link_url": "https://www.facebook.com/bruno.oliveira.98622",
     "open_external": true,
     "show_year": true,
     "custom_text": "Snuggle™ – Desenvolvido por Bruno Oliveira © 2025"

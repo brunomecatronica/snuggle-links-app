@@ -7,44 +7,85 @@
     <meta name="google-translate-customization" content="auto">
     <title>Snuggle - Birthday Manager</title>
     
-    <!-- Tradução automática invisível -->
+    <!-- Tradução automática melhorada -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             // Detecta idioma do navegador/dispositivo
             var userLang = navigator.language || navigator.userLanguage;
             var detectedLang = userLang.substring(0, 2);
             
-            console.log('Idioma detectado:', userLang, '-> Traduzindo automaticamente para:', detectedLang);
+            console.log('🌐 Idioma detectado:', userLang, '-> Código:', detectedLang);
             
-            // Só traduz se não for inglês (idioma original da página)
-            if (detectedLang !== 'en') {
-                var supportedLangs = ['pt', 'es', 'fr', 'de', 'zh', 'ar', 'hi', 'it', 'ja', 'ko', 'ru'];
+            // Lista de idiomas suportados
+            var supportedLangs = ['pt', 'es', 'fr', 'de', 'zh', 'ar', 'hi', 'it', 'ja', 'ko', 'ru'];
+            
+            // Cria o elemento do Google Translate sempre
+            var translateDiv = document.createElement('div');
+            translateDiv.id = 'google_translate_element';
+            translateDiv.style.position = 'fixed';
+            translateDiv.style.top = '-9999px';
+            translateDiv.style.left = '-9999px';
+            translateDiv.style.visibility = 'hidden';
+            translateDiv.style.opacity = '0';
+            document.body.appendChild(translateDiv);
+            
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'pt,es,fr,de,zh,zh-cn,zh-tw,ar,hi,it,ja,ko,ru,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                gaTrack: false,
+                gaId: ''
+            }, 'google_translate_element');
+            
+            // Só traduz se não for inglês e for suportado
+            if (detectedLang !== 'en' && supportedLangs.includes(detectedLang)) {
+                console.log('✅ Iniciando tradução automática para:', detectedLang);
                 
-                if (supportedLangs.includes(detectedLang)) {
-                    // Cria elemento invisível para tradução automática
-                    var hiddenDiv = document.createElement('div');
-                    hiddenDiv.id = 'google_translate_element';
-                    hiddenDiv.style.display = 'none';
-                    document.body.appendChild(hiddenDiv);
+                // Função para tentar traduzir
+                function attemptTranslation(attempts) {
+                    if (attempts > 10) {
+                        console.log('❌ Falha na tradução após 10 tentativas');
+                        return;
+                    }
                     
-                    new google.translate.TranslateElement({
-                        pageLanguage: 'en',
-                        includedLanguages: detectedLang,
-                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                        autoDisplay: false,
-                        gaTrack: false,
-                        gaId: ''
-                    }, 'google_translate_element');
-                    
-                    // Auto-traduz após um pequeno delay
-                    setTimeout(function() {
-                        var selectElement = document.querySelector('.goog-te-combo');
-                        if (selectElement) {
-                            selectElement.value = detectedLang;
-                            selectElement.dispatchEvent(new Event('change'));
+                    var selectElement = document.querySelector('.goog-te-combo');
+                    if (selectElement && selectElement.options.length > 1) {
+                        console.log('🔄 Tentativa', attempts, '- Traduzindo para:', detectedLang);
+                        
+                        // Procura a opção do idioma detectado
+                        for (var i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].value === detectedLang) {
+                                selectElement.selectedIndex = i;
+                                selectElement.value = detectedLang;
+                                
+                                // Dispara eventos
+                                var changeEvent = new Event('change', { bubbles: true });
+                                selectElement.dispatchEvent(changeEvent);
+                                
+                                var clickEvent = new Event('click', { bubbles: true });
+                                selectElement.dispatchEvent(clickEvent);
+                                
+                                console.log('✅ Tradução disparada para:', detectedLang);
+                                return;
+                            }
                         }
-                    }, 1000);
+                        
+                        console.log('⚠️ Idioma não encontrado nas opções');
+                    } else {
+                        // Tenta novamente após 500ms
+                        setTimeout(function() {
+                            attemptTranslation(attempts + 1);
+                        }, 500);
+                    }
                 }
+                
+                // Inicia tentativas de tradução após 1 segundo
+                setTimeout(function() {
+                    attemptTranslation(1);
+                }, 1000);
+            } else {
+                console.log('ℹ️ Mantendo idioma original (inglês) ou idioma não suportado');
             }
         }
     </script>

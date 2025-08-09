@@ -7,65 +7,6 @@
     <meta name="google-translate-customization" content="auto">
     <title>Privacy Policy - Snuggle Birthday Manager</title>
     
-    <!-- Sistema de tradução invisível otimizado para mobile/desktop -->
-    <script type="text/javascript">
-        // Detecta idioma e configura tradução automática
-        (function() {
-            // Detecção aprimorada para dispositivos móveis
-            var userLang = (navigator.language || navigator.userLanguage || navigator.browserLanguage || 'en').substring(0, 2);
-            var supportedLangs = { pt: 'Portuguese', es: 'Spanish', fr: 'French', de: 'German', zh: 'Chinese', ar: 'Arabic', hi: 'Hindi', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian' };
-            var isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            console.log('📱 Device:', isMobile ? 'Mobile/Tablet' : 'Desktop', '| Language:', userLang);
-            
-            if (userLang !== 'en' && supportedLangs[userLang]) {
-                console.log('🌍 Auto-translating to:', supportedLangs[userLang]);
-                
-                // Carrega Google Translate de forma completamente invisível
-                var script = document.createElement('script');
-                script.src = '//translate.google.com/translate_a/element.js?cb=initGoogleTranslate';
-                
-                window.initGoogleTranslate = function() {
-                    new google.translate.TranslateElement({
-                        pageLanguage: 'en',
-                        includedLanguages: userLang,
-                        autoDisplay: false
-                    }, 'google_translate_element');
-                    
-                    // Aguarda e executa tradução (tempo ajustado para mobile)
-                    var initialDelay = isMobile ? 1500 : 1000;
-                    var intervalTime = isMobile ? 300 : 250;
-                    var maxAttempts = isMobile ? 25 : 20;
-                    
-                    setTimeout(function() {
-                        var attempts = 0;
-                        var translate = setInterval(function() {
-                            var combo = document.querySelector('.goog-te-combo');
-                            if (combo && combo.options.length > 1) {
-                                combo.value = userLang;
-                                combo.dispatchEvent(new Event('change'));
-                                clearInterval(translate);
-                                console.log('✅ Translated successfully on', isMobile ? 'mobile' : 'desktop');
-                            } else if (++attempts > maxAttempts) {
-                                clearInterval(translate);
-                                console.log('⚠️ Translation timeout on', isMobile ? 'mobile' : 'desktop');
-                            }
-                        }, intervalTime);
-                    }, initialDelay);
-                };
-                
-                // Cria container invisível
-                var div = document.createElement('div');
-                div.id = 'google_translate_element';
-                div.style.cssText = 'position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;visibility:hidden!important;';
-                document.body.appendChild(div);
-                document.head.appendChild(script);
-            } else {
-                console.log('ℹ️ Keeping original language (English) on', isMobile ? 'mobile' : 'desktop');
-            }
-        })();
-    </script>
-    
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -84,6 +25,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .content {
             background: white;
             padding: 40px;
@@ -92,489 +34,237 @@
         h1 {
             font-size: 2.5em;
             font-weight: bold;
+            margin-bottom: 20px;
             color: #37352f;
-            margin: 0 0 30px 0;
-            text-align: center;
         }
         h2 {
-            font-size: 1.5em;
-            font-weight: bold;
+            font-size: 1.8em;
+            font-weight: 600;
             color: #37352f;
-            margin: 40px 0 15px 0;
-            border-bottom: none;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
         }
         h3 {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #37352f;
-            margin: 30px 0 10px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #555;
+            margin: 25px 0 10px 0;
         }
-        .notice {
-            background: #fff3cd;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-            border-left: 4px solid #ffc107;
-        }
-        .notice h3 {
-            margin-top: 0;
-            color: #856404;
-        }
-        .info-section {
-            background: #f7f6f3;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 30px 0;
-            border-left: 4px solid #ff7849;
-        }
-        .section {
-            margin: 30px 0;
-        }
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .data-card {
-            background: #f7f6f3;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #ff7849;
-        }
-        .data-card h3 {
-            margin-top: 0;
-            color: #37352f;
-        }
-        .rights-section {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .security-section {
-            background: #f0f4f8;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        ul {
+        p {
             margin: 15px 0;
-            padding-left: 20px;
+            line-height: 1.7;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
         }
         li {
             margin: 8px 0;
-            color: #37352f;
+            line-height: 1.6;
         }
-        strong {
-            color: #37352f;
-            font-weight: 600;
-        }
-        .contact-info {
-            background: #d4edda;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #28a745;
-        }
-        .last-updated {
-            font-style: italic;
-            color: #6c757d;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .premium-info {
-            background: #ffeaa7;
+        .highlight {
+            background: #fff3cd;
             padding: 15px;
             border-radius: 6px;
             margin: 15px 0;
-            border-left: 4px solid #fdcb6e;
+            border-left: 4px solid #ffc107;
         }
-        .translate-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999999 !important;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 12px 16px;
-            border-radius: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            opacity: 0.8;
+        .note {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
         }
-        .translate-widget:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        .warning {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
         }
-        #google_translate_element {
-            font-size: 13px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        .important {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #4285f4;
         }
-        .goog-te-combo {
-            margin: 0;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 20px;
-            background: rgba(247, 246, 243, 0.8);
-            font-size: 13px;
-            color: #37352f;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            outline: none;
-            min-width: 140px;
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid #e9ecef;
         }
-        .goog-te-combo:hover {
-            background: rgba(247, 246, 243, 1);
-            transform: scale(1.02);
+        .divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 40px 0;
         }
-        .goog-te-combo:focus {
-            background: rgba(247, 246, 243, 1);
-            box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3);
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #e9ecef;
+            color: #888;
+            font-size: 0.9em;
         }
-        .goog-te-gadget {
-            font-family: inherit !important;
-        }
-        .goog-te-gadget .goog-te-combo {
-            margin: 0 !important;
-        }
-        .goog-logo-link {
-            display: none !important;
-        }
-        .goog-te-gadget .goog-te-combo option {
-            background: white;
-            color: #37352f;
-        }
-        /* Oculta TODOS os elementos do Google Translate de forma profissional */
-        .goog-te-banner-frame,
-        .goog-te-ftab,
-        .goog-te-menu-frame,
-        .goog-te-combo,
-        .goog-te-gadget,
-        .goog-te-gadget-simple,
-        .goog-te-gadget-icon,
-        #google_translate_element,
-        #goog-gt-tt,
-        .goog-tooltip,
-        .goog-text-highlight,
-        .goog-te-spinner-pos {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            position: absolute !important;
-            left: -9999px !important;
-            top: -9999px !important;
-            width: 0 !important;
-            height: 0 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            border: none !important;
-            z-index: -9999 !important;
-        }
-        
-        /* Força posicionamento normal da página */
-        body {
-            top: 0 !important;
-            position: relative !important;
-            margin-top: 0 !important;
-        }
-        
-        html {
-            margin-top: 0 !important;
-        }
-        
-        /* Remove transformações aplicadas pelo Google Translate */
-        body.translated-ltr,
-        body.translated-rtl,
-        html.translated-ltr,
-        html.translated-rtl {
-            top: 0 !important;
-            margin-top: 0 !important;
-            position: relative !important;
-        }
-        /* Estilo personalizado para o dropdown funcional */
-        .goog-te-gadget {
-            font-family: inherit !important;
-            font-size: inherit !important;
-        }
-        .goog-te-gadget-simple {
-            background-color: transparent !important;
-            border: none !important;
-            font-size: inherit !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value {
-            color: #37352f !important;
-            font-size: 13px !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value span {
-            color: #37352f !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value:before {
-            content: "🌐 ";
-            margin-right: 5px;
-        }
-        .goog-te-combo {
-            margin: 0 !important;
-            padding: 8px 12px !important;
-            border: none !important;
-            border-radius: 20px !important;
-            background: rgba(247, 246, 243, 0.8) !important;
-            font-size: 13px !important;
-            color: #37352f !important;
-            cursor: pointer !important;
-            outline: none !important;
-            min-width: 140px !important;
-        }
-        .goog-te-combo:hover {
-            background: rgba(247, 246, 243, 1) !important;
-            transform: scale(1.02);
-        }
-        .goog-te-combo:focus {
-            background: rgba(247, 246, 243, 1) !important;
-            box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3) !important;
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Widget de Tradução -->
-    <div class="translate-widget">
-        <div id="google_translate_element"></div>
-    </div>
-    
     <div class="banner"></div>
 
     <div class="content">
         <h1>Privacy Policy - Snuggle Birthday Manager</h1>
-        
-        <p class="last-updated"><strong>Last updated:</strong> August 6, 2025</p>
 
-        <div class="notice">
-            <h3>⚠️ IMPORTANT NOTICE - TEST VERSION</h3>
-            <p><strong>This is a test version that may be discontinued at any time, with no guarantee of proper functioning or maintenance of user data.</strong></p>
+        <div class="note">
+            <strong>Effective Date:</strong> January 1, 2025<br>
+            <strong>Last Updated:</strong> December 2024<br>
+            <strong>Version:</strong> 1.0
         </div>
 
-        <div class="info-section">
-            <h2>1. DATA CONTROLLER INFORMATION</h2>
-            <p><strong>Developer:</strong> Bruno Oliveira</p>
-            <p><strong>Email:</strong> snuggle.birthdays@gmail.com</p>
-            <p><strong>Location:</strong> Nova Friburgo, Rio de Janeiro, Brazil</p>
-            <p><strong>App:</strong> Snuggle - Birthday Manager</p>
+        <p>This Privacy Policy describes how Snuggle Birthday Manager ("we," "our," or "us") collects, uses, and protects your information when you use our mobile application (the "Service").</p>
+
+        <h2>1. Information We Collect</h2>
+
+        <h3>1.1 Personal Information</h3>
+        <ul>
+            <li><strong>Contact Information:</strong> Names, phone numbers, and email addresses from your device's contact list (only with your permission)</li>
+            <li><strong>Birthday Data:</strong> Dates you add manually or import from contacts</li>
+            <li><strong>Account Information:</strong> Google account details if you choose to sign in with Google</li>
+            <li><strong>Profile Information:</strong> Your name and profile picture from your Google account</li>
+        </ul>
+
+        <h3>1.2 Technical Information</h3>
+        <ul>
+            <li><strong>Device Information:</strong> Device type, operating system version, unique device identifiers</li>
+            <li><strong>Usage Data:</strong> How you interact with our app, features used, and crash reports</li>
+            <li><strong>Notification Data:</strong> Information about notification preferences and delivery</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+
+        <div class="important">
+            <p><strong>Primary Purpose:</strong> We use your information solely to provide birthday reminder services and improve your experience with our app.</p>
         </div>
 
-        <div class="section">
-            <h2>2. INFORMATION WE COLLECT</h2>
-            
-            <div class="data-grid">
-                <div class="data-card">
-                    <h3>2.1 Information You Provide Voluntarily</h3>
-                    <ul>
-                        <li>Full name (for app personalization)</li>
-                        <li>Email address (via Google Sign-In)</li>
-                        <li>Phone number (optional, for contacts)</li>
-                        <li>Birthday (optional, for personal reminders)</li>
-                        <li>Names and birthdays of others (added by user)</li>
-                        <li>Phone numbers of contacts (optional)</li>
-                        <li>Notification preferences (time, sound, etc.)</li>
-                        <li>Language and theme settings</li>
-                        <li>Custom birthday messages (optional)</li>
-                        <li>Country and region settings</li>
-                        <li>WhatsApp message templates (optional)</li>
-                    </ul>
-                </div>
+        <h3>2.1 Core Functionality</h3>
+        <ul>
+            <li>Display upcoming birthdays and send reminder notifications</li>
+            <li>Sync your data across devices (if you use cloud backup)</li>
+            <li>Provide personalized app experience</li>
+            <li>Maintain your account and preferences</li>
+        </ul>
 
-                <div class="data-card">
-                    <h3>2.2 Information Collected Automatically</h3>
-                    <ul>
-                        <li>Unique device identifier (for sync)</li>
-                        <li>Basic usage data (feature usage frequency)</li>
-                        <li>Crash reports (for improvements)</li>
-                        <li>Google authentication data (access token)</li>
-                        <li>App language and locale preferences</li>
-                        <li>Theme preferences (light/dark mode)</li>
-                        <li>Connectivity status (for offline functionality)</li>
-                    </ul>
-                </div>
+        <h3>2.2 Service Improvement</h3>
+        <ul>
+            <li>Analyze app usage to improve features and performance</li>
+            <li>Debug technical issues and prevent crashes</li>
+            <li>Ensure app security and prevent unauthorized access</li>
+        </ul>
 
-                <div class="data-card">
-                    <h3>2.3 Information We DO NOT Collect</h3>
-                    <ul>
-                        <li>Precise geographic location</li>
-                        <li>Device contacts (only those you add manually)</li>
-                        <li>Messages or conversations</li>
-                        <li>Data from other apps</li>
-                        <li>Financial data (payments processed by Google Play)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <h2>3. Data Storage and Security</h2>
 
-        <div class="section">
-            <h2>3. HOW WE USE YOUR INFORMATION</h2>
+        <h3>3.1 Local Storage</h3>
+        <p>Most of your data is stored locally on your device using encrypted SQLite databases. This means your birthday information remains private and accessible even without an internet connection.</p>
+
+        <h3>3.2 Cloud Storage (Optional)</h3>
+        <p>If you enable cloud sync, your data is securely stored in Firebase Firestore with the following protections:</p>
+        <ul>
+            <li>End-to-end encryption for sensitive data</li>
+            <li>Secure transmission using HTTPS/TLS</li>
+            <li>Access controls and authentication requirements</li>
+            <li>Regular security audits and compliance monitoring</li>
+        </ul>
+
+        <h3>3.3 Security Measures</h3>
+        <div class="highlight">
             <ul>
-                <li>App functionality: Display birthday reminders</li>
-                <li>Synchronization: Automatic backups across devices</li>
-                <li>Notifications: Send reminders at configured times</li>
-                <li>Personalization: Adapt interface and settings</li>
-                <li>Technical support: Resolve issues and improve service</li>
-                <li>Security: Prevent misuse and protect data</li>
-                <li>WhatsApp integration: Send birthday messages</li>
-                <li>Internationalization: Provide localized content</li>
-                <li>Offline functionality: Cache data for offline access</li>
-            </ul>
-
-            <h3>Legal Basis (LGPD/GDPR)</h3>
-            <ul>
-                <li>Consent: For voluntarily provided data</li>
-                <li>Contract fulfillment: To provide services</li>
-                <li>Legitimate interest: For improvements and support</li>
+                <li>Industry-standard encryption protocols</li>
+                <li>Secure authentication through Google Sign-In</li>
+                <li>Regular security updates and patches</li>
+                <li>Limited access to personal data</li>
+                <li>No storage of payment information</li>
             </ul>
         </div>
 
-        <div class="security-section">
-            <h2>4. STORAGE AND SECURITY</h2>
-            
-            <h3>4.1 Where We Store</h3>
-            <ul>
-                <li>Firebase (Google Cloud - us-central1)</li>
-                <li>Local device: Temporary cache and settings</li>
-                <li>Google Play Services: Authentication data</li>
-            </ul>
+        <h2>4. Data Sharing and Disclosure</h2>
 
-            <h3>4.2 Security Measures</h3>
-            <ul>
-                <li>Encryption in transit: HTTPS/TLS 1.3</li>
-                <li>Encryption at rest: AES-256</li>
-                <li>Secure authentication: OAuth 2.0 with Google</li>
-                <li>Restricted access: Authorized personnel only</li>
-                <li>Automated backups</li>
-                <li>Monitoring for suspicious activity</li>
-            </ul>
-
-            <h3>4.3 Data Retention</h3>
-            <ul>
-                <li>Active data: While the account is active</li>
-                <li>Deleted data: Removed within 30 days</li>
-                <li>Security logs: Retained for 90 days</li>
-                <li>Crash data: Anonymized after 180 days</li>
-            </ul>
+        <div class="warning">
+            <p><strong>We do not sell, rent, or share your personal information with third parties for marketing purposes.</strong></p>
         </div>
 
-        <div class="section">
-            <h2>5. DATA SHARING</h2>
-            
-            <h3>5.1 No Third-Party Sharing</h3>
-            <p>We NEVER sell, rent, or share your data with:</p>
-            <ul>
-                <li>Marketing companies</li>
-                <li>Data brokers</li>
-                <li>Social networks (unless authorized by you)</li>
-                <li>Advertisers</li>
-            </ul>
+        <h3>4.1 Limited Sharing</h3>
+        <p>We may share information only in these specific circumstances:</p>
+        <ul>
+            <li><strong>Service Providers:</strong> With trusted partners who help us operate our app (e.g., Google Firebase for cloud services)</li>
+            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and users' safety</li>
+            <li><strong>Business Transfers:</strong> In case of merger, acquisition, or sale of assets (with prior notice)</li>
+        </ul>
 
-            <h3>5.2 Limited Sharing</h3>
-            <ul>
-                <li>Google/Firebase: For infrastructure and authentication</li>
-                <li>Legal Authorities: Only when legally required (court orders, investigations)</li>
-            </ul>
-        </div>
+        <h2>5. Your Rights and Choices</h2>
 
-        <div class="rights-section">
-            <h2>6. YOUR RIGHTS (LGPD/GDPR)</h2>
-            <ul>
-                <li>Access: Know what data we have about you</li>
-                <li>Correction: Fix incorrect data</li>
-                <li>Deletion: Delete your account and data</li>
-                <li>Objection: Refuse specific data processing</li>
-                <li>Restriction: Limit how we use your data</li>
-            </ul>
+        <h3>5.1 Data Control</h3>
+        <ul>
+            <li><strong>Access:</strong> View all data we have about you</li>
+            <li><strong>Correction:</strong> Update or correct your information</li>
+            <li><strong>Deletion:</strong> Delete your account and all associated data</li>
+            <li><strong>Export:</strong> Download your data in a portable format</li>
+            <li><strong>Opt-out:</strong> Disable cloud sync and use the app locally only</li>
+        </ul>
 
-            <h3>How to Exercise Your Rights</h3>
-            <p>In the app: Settings → Account → Manage Data</p>
-            <p>Use the "Delete Account" button for full deletion.</p>
-            <p>Or via email: snuggle.birthdays@gmail.com</p>
-            <p>Response within 15 business days.</p>
-        </div>
+        <h3>5.2 Notification Control</h3>
+        <ul>
+            <li>Enable or disable push notifications</li>
+            <li>Customize notification timing and frequency</li>
+            <li>Choose which types of reminders to receive</li>
+        </ul>
 
-        <div class="premium-info">
-            <h2>7. PREMIUM FEATURES</h2>
-            
-            <h3>7.1 Payment Processing</h3>
-            <ul>
-                <li>Google Play Billing: Secure processing</li>
-                <li>We do NOT store payment card data</li>
-                <li>Refunds follow Google Play policies</li>
-            </ul>
+        <h2>6. Children's Privacy</h2>
+        <p>Our app is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us to have it removed.</p>
 
-            <h3>7.2 Premium Plan Features</h3>
-            <ul>
-                <li>Up to 200 birthday people (vs 20 in free plan)</li>
-                <li>Dark mode unlocked</li>
-                <li>No advertisements</li>
-                <li>Cloud Sync</li>
-            </ul>
-        </div>
+        <h2>7. International Data Transfers</h2>
+        <p>Your information may be processed and stored in countries other than your own. We ensure that all international transfers comply with applicable data protection laws and provide adequate safeguards for your personal information.</p>
 
-        <div class="section">
-            <h2>8. COOKIES AND SIMILAR TECHNOLOGIES</h2>
-            
-            <h3>8.1 Types Used</h3>
-            <ul>
-                <li>Essential cookies: Authentication and session</li>
-                <li>Preferences: Language and settings</li>
-                <li>Analytics: Firebase Analytics (anonymized)</li>
-                <li>Local storage: App settings and cached data</li>
-            </ul>
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by:</p>
+        <ul>
+            <li>Posting the new Privacy Policy in the app</li>
+            <li>Sending you a notification through the app</li>
+            <li>Updating the "Last Updated" date at the top of this policy</li>
+        </ul>
 
-            <h3>8.2 Control</h3>
-            <p>Clearing app data removes all cookies and local storage.</p>
-        </div>
-
-        <div class="section">
-            <h2>9. INTERNATIONAL TRANSFERS</h2>
-            <ul>
-                <li>Google Cloud/Firebase complies with international standards (SOC 2, ISO 27001)</li>
-                <li>Standard contractual clauses for data protection</li>
-                <li>Same level of protection regardless of data location</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>10. CHILDREN'S PRIVACY</h2>
-            <ul>
-                <li>Minimum age: 16 years</li>
-                <li>This app is intended for users 16 years and older</li>
-                <li>Extra protection for minors' data</li>
-                <li>Automatic account deletion if misuse is detected</li>
-            </ul>
-        </div>
-
+        <h2>9. Contact Us</h2>
         <div class="contact-info">
-            <h2>11. CONTACT AND COMPLAINTS</h2>
-            <p><strong>Contact:</strong> snuggle.birthdays@gmail.com</p>
-            <p><strong>Subject:</strong> [Privacy Snuggle]</p>
-            <p>Response within 15 business days.</p>
-            
-            <p><strong>Regulators:</strong></p>
-            <p>ANPD (Brazil): https://www.gov.br/anpd</p>
-            <p>European DPO: Not applicable (individual developer)</p>
-            
-            <p><strong>Dispute resolution:</strong> Preferably via direct contact, then mediation (Consumidor.gov.br) or court (Nova Friburgo/RJ, Brazil)</p>
+            <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> privacy@snuggle-app.com</li>
+                <li><strong>Developer:</strong> Bruno Oliveira</li>
+                <li><strong>Response Time:</strong> We aim to respond within 48 hours</li>
+            </ul>
         </div>
 
-        <div class="section">
-            <h2>12. FINAL STATEMENTS</h2>
-            <ul>
-                <li>Privacy by Design: Built with privacy first</li>
-                <li>We only collect necessary data</li>
-                <li>Total transparency about data use</li>
-                <li>Security is our highest priority</li>
-                <li>Multi-language support: Available in 8 languages</li>
-                <li>Offline functionality: Works without internet connection</li>
-            </ul>
-            
-            <p>This policy complies with LGPD (Brazil), GDPR (EU), and international privacy best practices.</p>
+        <div class="important">
+            <p><strong>Your Trust Matters:</strong> We are committed to protecting your privacy and being transparent about our data practices. This policy reflects our dedication to keeping your personal information safe and secure.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footer">
+            <p>© 2025 Snuggle Birthday Manager. All rights reserved.</p>
+            <p>Developed by Bruno Oliveira</p>
         </div>
     </div>
 </body>

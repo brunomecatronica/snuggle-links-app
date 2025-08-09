@@ -7,65 +7,6 @@
     <meta name="google-translate-customization" content="auto">
     <title>Snuggle - Birthday Manager</title>
     
-    <!-- Sistema de tradução invisível otimizado para mobile/desktop -->
-    <script type="text/javascript">
-        // Detecta idioma e configura tradução automática
-        (function() {
-            // Detecção aprimorada para dispositivos móveis
-            var userLang = (navigator.language || navigator.userLanguage || navigator.browserLanguage || 'en').substring(0, 2);
-            var supportedLangs = { pt: 'Portuguese', es: 'Spanish', fr: 'French', de: 'German', zh: 'Chinese', ar: 'Arabic', hi: 'Hindi', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian' };
-            var isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            console.log('📱 Device:', isMobile ? 'Mobile/Tablet' : 'Desktop', '| Language:', userLang);
-            
-            if (userLang !== 'en' && supportedLangs[userLang]) {
-                console.log('🌍 Auto-translating to:', supportedLangs[userLang]);
-                
-                // Carrega Google Translate de forma completamente invisível
-                var script = document.createElement('script');
-                script.src = '//translate.google.com/translate_a/element.js?cb=initGoogleTranslate';
-                
-                window.initGoogleTranslate = function() {
-                    new google.translate.TranslateElement({
-                        pageLanguage: 'en',
-                        includedLanguages: userLang,
-                        autoDisplay: false
-                    }, 'google_translate_element');
-                    
-                    // Aguarda e executa tradução (tempo ajustado para mobile)
-                    var initialDelay = isMobile ? 1500 : 1000;
-                    var intervalTime = isMobile ? 300 : 250;
-                    var maxAttempts = isMobile ? 25 : 20;
-                    
-                    setTimeout(function() {
-                        var attempts = 0;
-                        var translate = setInterval(function() {
-                            var combo = document.querySelector('.goog-te-combo');
-                            if (combo && combo.options.length > 1) {
-                                combo.value = userLang;
-                                combo.dispatchEvent(new Event('change'));
-                                clearInterval(translate);
-                                console.log('✅ Translated successfully on', isMobile ? 'mobile' : 'desktop');
-                            } else if (++attempts > maxAttempts) {
-                                clearInterval(translate);
-                                console.log('⚠️ Translation timeout on', isMobile ? 'mobile' : 'desktop');
-                            }
-                        }, intervalTime);
-                    }, initialDelay);
-                };
-                
-                // Cria container invisível
-                var div = document.createElement('div');
-                div.id = 'google_translate_element';
-                div.style.cssText = 'position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;visibility:hidden!important;';
-                document.body.appendChild(div);
-                document.head.appendChild(script);
-            } else {
-                console.log('ℹ️ Keeping original language (English) on', isMobile ? 'mobile' : 'desktop');
-            }
-        })();
-    </script>
-    
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -93,204 +34,193 @@
         h1 {
             font-size: 2.5em;
             font-weight: bold;
+            margin-bottom: 20px;
             color: #37352f;
-            margin: 0 0 30px 0;
-            text-align: center;
         }
         h2 {
-            font-size: 1.8em;
-            font-weight: bold;
+            font-size: 1.5em;
+            font-weight: 600;
             color: #37352f;
-            margin: 40px 0 20px 0;
-            text-align: center;
-        }
-        .description {
-            font-size: 1.1em;
-            text-align: center;
-            margin: 30px 0 50px 0;
-            color: #666;
-            line-height: 1.8;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
         }
         .links-container {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 50px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
         .link-card {
-            background: #f7f6f3;
-            padding: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
             border-radius: 12px;
-            border-left: 4px solid #ff7849;
+            padding: 25px;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            min-width: 300px;
-            max-width: 350px;
-            flex: 1;
+            cursor: pointer;
         }
         .link-card:hover {
+            background: #e3f2fd;
+            border-color: #2196f3;
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-            border-left-color: #ff6b35;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
         }
         .link-card h3 {
-            margin: 0 0 15px 0;
-            color: #37352f;
-            font-size: 1.3em;
-            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #1976d2;
+            font-size: 1.2em;
+            font-weight: 600;
         }
         .link-card p {
             margin: 0;
             color: #666;
             font-size: 0.95em;
-            line-height: 1.6;
+            line-height: 1.5;
         }
-        .link-card .arrow {
-            display: inline-block;
-            margin-left: 8px;
-            transition: transform 0.3s ease;
+        .description {
+            margin: 30px 0;
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #555;
         }
-        .link-card:hover .arrow {
-            transform: translateX(4px);
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .features h3 {
+            color: #37352f;
+            margin-bottom: 20px;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .features li:before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
         }
         .footer {
             text-align: center;
-            margin-top: 60px;
             padding: 30px 0;
             border-top: 1px solid #e9ecef;
             color: #888;
             font-size: 0.9em;
         }
-        /* Oculta TODOS os elementos do Google Translate de forma profissional */
-        .goog-te-banner-frame,
-        .goog-te-ftab,
-        .goog-te-menu-frame,
-        .goog-te-combo,
-        .goog-te-gadget,
-        .goog-te-gadget-simple,
-        .goog-te-gadget-icon,
-        #google_translate_element,
-        #goog-gt-tt,
-        .goog-tooltip,
-        .goog-text-highlight,
-        .goog-te-spinner-pos {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            position: absolute !important;
-            left: -9999px !important;
-            top: -9999px !important;
-            width: 0 !important;
-            height: 0 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            border: none !important;
-            z-index: -9999 !important;
-        }
-        
-        /* Força posicionamento normal da página */
-        body {
-            top: 0 !important;
-            position: relative !important;
-            margin-top: 0 !important;
-        }
-        
-        html {
-            margin-top: 0 !important;
-        }
-        
-        /* Remove transformações aplicadas pelo Google Translate */
-        body.translated-ltr,
-        body.translated-rtl,
-        html.translated-ltr,
-        html.translated-rtl {
-            top: 0 !important;
-            margin-top: 0 !important;
-            position: relative !important;
-        }
+
         .app-info {
             background: #e3f2fd;
             padding: 25px;
             border-radius: 8px;
             margin: 40px 0;
-            text-align: center;
+            border-left: 4px solid #2196f3;
         }
         .app-info h3 {
-            margin: 0 0 10px 0;
             color: #1976d2;
+            margin-bottom: 15px;
         }
-        .app-info p {
-            margin: 0;
-            color: #555;
+        .tech-stack {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #ff9800;
+        }
+        .tech-stack h3 {
+            color: #f57c00;
+            margin-bottom: 15px;
+        }
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tech-item {
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #ffcc02;
+            color: #e65100;
         }
         @media (max-width: 768px) {
             .content {
                 padding: 20px;
             }
-            .links-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .link-card {
-                min-width: auto;
-                max-width: none;
-            }
             h1 {
                 font-size: 2em;
             }
-            h2 {
-                font-size: 1.5em;
+            .links-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-
-    
     <div class="banner"></div>
 
     <div class="content">
         <h1>Snuggle - Birthday Manager</h1>
-
-        <div class="app-info">
-            <h3>🎂 Never Forget Important Dates</h3>
-            <p>Smart birthday management with offline support, notifications, and WhatsApp sharing</p>
+        
+        <div class="description">
+            <p>Comprehensive documentation and information about the Snuggle Birthday Manager application.</p>
         </div>
 
-        <p class="description">
-            Snuggle is your comprehensive birthday and special date management solution. 
-            With intelligent notifications, seamless offline/online synchronization, and easy sharing capabilities, 
-            you'll never miss celebrating the important moments with your loved ones.
-        </p>
-
-        <h2>📋 Documentation</h2>
-
         <div class="links-container">
-            <a href="https://brunomecatronica.github.io/snuggle-links-app/sobre.html" class="link-card">
+            <a href="sobre.html" class="link-card">
                 <h3>Functional Specification – Snuggle</h3>
-                <p>
-                    Complete technical documentation including features, architecture, 
-                    compatibility requirements, and development specifications for the Snuggle app.
-                </p>
-                <span class="arrow">→</span>
+                <p>Complete functional specification document outlining the application's features, user flows, and technical requirements.</p>
             </a>
-
-            <a href="https://brunomecatronica.github.io/snuggle-links-app/privacidade.html" class="link-card">
+            <a href="privacidade.html" class="link-card">
                 <h3>Privacy Policy - Snuggle Birthday Manager</h3>
-                <p>
-                    Comprehensive privacy policy detailing data collection, usage, storage, 
-                    and user rights in compliance with LGPD, GDPR, and international standards.
-                </p>
-                <span class="arrow">→</span>
+                <p>Detailed privacy policy explaining how user data is collected, processed, and protected within the application.</p>
             </a>
+        </div>
+
+        <div class="app-info">
+            <h3>About Snuggle Birthday Manager</h3>
+            <p>A comprehensive birthday management application designed to help users organize, track, and celebrate important dates. Built with modern technologies and user-centric design principles.</p>
+        </div>
+
+        <div class="tech-stack">
+            <h3>Technology Stack</h3>
+            <p>Built using modern, reliable technologies:</p>
+            <div class="tech-list">
+                <span class="tech-item">Flutter</span>
+                <span class="tech-item">Firebase</span>
+                <span class="tech-item">Android</span>
+                <span class="tech-item">iOS</span>
+                <span class="tech-item">Cloud Storage</span>
+                <span class="tech-item">Push Notifications</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3>Key Features</h3>
+            <ul>
+                <li>Birthday tracking and reminders</li>
+                <li>Contact integration</li>
+                <li>Custom notification settings</li>
+                <li>Multi-platform support</li>
+                <li>Secure data storage</li>
+                <li>User-friendly interface</li>
+            </ul>
         </div>
 
         <div class="footer">
-            <p><strong>Snuggle™</strong> – Desenvolvido por Bruno Oliveira © 2025</p>
-            <p>Multi-language support • 8 languages • Android 6.0+ compatible</p>
+            <p>© 2025 Snuggle Birthday Manager. All rights reserved.</p>
+            <p>Developed by Bruno Oliveira</p>
         </div>
     </div>
 </body>

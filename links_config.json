@@ -3,12 +3,12 @@
     {
       "title": "Sobre",
       "url": "https://brunomecatronica.github.io/snuggle-links-app/sobre.html",
-      "openInBrowser": false
+      "openInBrowser": true
     },
     {
       "title": "Política de Privacidade",
       "url": "https://brunomecatronica.github.io/snuggle-links-app/privacidade.html",
-      "openInBrowser": false
+      "openInBrowser": true
     }
   ],
   "copyright": {

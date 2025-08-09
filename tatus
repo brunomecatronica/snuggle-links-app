@@ -1,0 +1,10 @@
+[33m68f8719[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Otimiza tradução automática para smartphones e tablets com detecção móvel
+[33m3825265[m Refatoração elegante: sistema de tradução 100% invisível e profissional
+[33m9c4ae4f[m Corrige tradução automática com sistema robusto de tentativas e logs detalhados
+[33mdc92f10[m Tradução automática invisível - detecta idioma e traduz automaticamente
+[33ma8e94da[m - Restaura funcionalidade do widget Google Translate - Remove CSS excessivo que quebrava funcionalidade - Mantém apenas remoção de elementos visuais necessários - Adiciona ícone 🌐 e estilo melhorado ao dropdown - Preserva hover e focus effects elegantes
+[33ma27a52b[m - Corrige sobreposição da barra Google Translate no widget - Aumenta z-index do widget para 999999 - Remove completamente banner frame com múltiplas propriedades - Força posicionamento da barra para fora da tela - Previne margin-top automático em body traduzido
+[33m3085637[m - Corrige funcionalidade do widget de tradução - Remove CSS que estava ocultando elementos essenciais - Mantém dropdown funcional com estilo personalizado - Preserva apenas remoção da barra superior do Google
+[33m6e11dea[m - Remove barra superior do Google Translate após tradução - Oculta banner e elementos desnecessários do Google - Mantém apenas o widget de seleção de idioma visível - Interface mais limpa e menos intrusiva
+[33mf73c772[m - Adiciona variações do chinês no widget de tradução - Inclui chinês simplificado (zh-cn) e tradicional (zh-tw) - Mantém chinês genérico (zh) para compatibilidade - Melhora suporte para usuários chineses
+[33m64e45be[m - Redesign elegante do widget de tradução - Design moderno com glassmorphism e blur effect - Widget discreto com 80% opacidade e hover smooth - Bordas arredondadas e animações fluidas - Remove elementos desnecessários do Google Translate

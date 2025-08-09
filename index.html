@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snuggle - Birthday Manager</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .banner {
+            width: 100%;
+            height: 240px;
+            background: url('snuggle-banner-sobre.png') center 62%/cover no-repeat;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #37352f;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #37352f;
+            margin: 40px 0 20px 0;
+            text-align: center;
+        }
+        .description {
+            font-size: 1.1em;
+            text-align: center;
+            margin: 30px 0 50px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+        .links-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        .link-card {
+            background: #f7f6f3;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #ff7849;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 300px;
+            max-width: 350px;
+            flex: 1;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            border-left-color: #ff6b35;
+        }
+        .link-card h3 {
+            margin: 0 0 15px 0;
+            color: #37352f;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .link-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .link-card .arrow {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        .link-card:hover .arrow {
+            transform: translateX(4px);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid #e9ecef;
+            color: #888;
+            font-size: 0.9em;
+        }
+        .app-info {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .app-info h3 {
+            margin: 0 0 10px 0;
+            color: #1976d2;
+        }
+        .app-info p {
+            margin: 0;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            .links-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .link-card {
+                min-width: auto;
+                max-width: none;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner"></div>
+
+    <div class="content">
+        <h1>Snuggle - Birthday Manager</h1>
+
+        <div class="app-info">
+            <h3>🎂 Never Forget Important Dates</h3>
+            <p>Smart birthday management with offline support, notifications, and WhatsApp sharing</p>
+        </div>
+
+        <p class="description">
+            Snuggle is your comprehensive birthday and special date management solution. 
+            With intelligent notifications, seamless offline/online synchronization, and easy sharing capabilities, 
+            you'll never miss celebrating the important moments with your loved ones.
+        </p>
+
+        <h2>📋 Documentation</h2>
+
+        <div class="links-container">
+            <a href="sobre.html" class="link-card">
+                <h3>Functional Specification – Snuggle</h3>
+                <p>
+                    Complete technical documentation including features, architecture, 
+                    compatibility requirements, and development specifications for the Snuggle app.
+                </p>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="privacidade.html" class="link-card">
+                <h3>Privacy Policy - Snuggle Birthday Manager</h3>
+                <p>
+                    Comprehensive privacy policy detailing data collection, usage, storage, 
+                    and user rights in compliance with LGPD, GDPR, and international standards.
+                </p>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p><strong>Snuggle™</strong> – Desenvolvido por Bruno Oliveira © 2025</p>
+            <p>Multi-language support • 8 languages • Android 6.0+ compatible</p>
+        </div>
+    </div>
+</body>
+</html>

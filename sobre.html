@@ -7,16 +7,45 @@
     <meta name="google-translate-customization" content="auto">
     <title>Functional Specification - Snuggle</title>
     
-    <!-- Google Translate Widget -->
+    <!-- Tradução automática invisível -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'pt,es,fr,de,zh,zh-cn,zh-tw,ar,hi,it,ja,ko,ru',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                gaTrack: false,
-                gaId: ''
-            }, 'google_translate_element');
+            // Detecta idioma do navegador/dispositivo
+            var userLang = navigator.language || navigator.userLanguage;
+            var detectedLang = userLang.substring(0, 2);
+            
+            console.log('Idioma detectado:', userLang, '-> Traduzindo automaticamente para:', detectedLang);
+            
+            // Só traduz se não for inglês (idioma original da página)
+            if (detectedLang !== 'en') {
+                var supportedLangs = ['pt', 'es', 'fr', 'de', 'zh', 'ar', 'hi', 'it', 'ja', 'ko', 'ru'];
+                
+                if (supportedLangs.includes(detectedLang)) {
+                    // Cria elemento invisível para tradução automática
+                    var hiddenDiv = document.createElement('div');
+                    hiddenDiv.id = 'google_translate_element';
+                    hiddenDiv.style.display = 'none';
+                    document.body.appendChild(hiddenDiv);
+                    
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en',
+                        includedLanguages: detectedLang,
+                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                        autoDisplay: false,
+                        gaTrack: false,
+                        gaId: ''
+                    }, 'google_translate_element');
+                    
+                    // Auto-traduz após um pequeno delay
+                    setTimeout(function() {
+                        var selectElement = document.querySelector('.goog-te-combo');
+                        if (selectElement) {
+                            selectElement.value = detectedLang;
+                            selectElement.dispatchEvent(new Event('change'));
+                        }
+                    }, 1000);
+                }
+            }
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -248,10 +277,7 @@
     </style>
 </head>
 <body>
-    <!-- Widget de Tradução -->
-    <div class="translate-widget">
-        <div id="google_translate_element"></div>
-    </div>
+
     
     <div class="banner"></div>
 

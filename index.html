@@ -7,16 +7,45 @@
     <meta name="google-translate-customization" content="auto">
     <title>Snuggle - Birthday Manager</title>
     
-    <!-- Google Translate Widget -->
+    <!-- Tradução automática invisível -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'pt,es,fr,de,zh,zh-cn,zh-tw,ar,hi,it,ja,ko,ru',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                gaTrack: false,
-                gaId: ''
-            }, 'google_translate_element');
+            // Detecta idioma do navegador/dispositivo
+            var userLang = navigator.language || navigator.userLanguage;
+            var detectedLang = userLang.substring(0, 2);
+            
+            console.log('Idioma detectado:', userLang, '-> Traduzindo automaticamente para:', detectedLang);
+            
+            // Só traduz se não for inglês (idioma original da página)
+            if (detectedLang !== 'en') {
+                var supportedLangs = ['pt', 'es', 'fr', 'de', 'zh', 'ar', 'hi', 'it', 'ja', 'ko', 'ru'];
+                
+                if (supportedLangs.includes(detectedLang)) {
+                    // Cria elemento invisível para tradução automática
+                    var hiddenDiv = document.createElement('div');
+                    hiddenDiv.id = 'google_translate_element';
+                    hiddenDiv.style.display = 'none';
+                    document.body.appendChild(hiddenDiv);
+                    
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en',
+                        includedLanguages: detectedLang,
+                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                        autoDisplay: false,
+                        gaTrack: false,
+                        gaId: ''
+                    }, 'google_translate_element');
+                    
+                    // Auto-traduz após um pequeno delay
+                    setTimeout(function() {
+                        var selectElement = document.querySelector('.goog-te-combo');
+                        if (selectElement) {
+                            selectElement.value = detectedLang;
+                            selectElement.dispatchEvent(new Event('change'));
+                        }
+                    }, 1000);
+                }
+            }
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -119,119 +148,15 @@
             color: #888;
             font-size: 0.9em;
         }
-        .translate-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999999 !important;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 12px 16px;
-            border-radius: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            opacity: 0.8;
-        }
-        .translate-widget:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-        }
+        /* Remove completamente elementos do Google Translate */
+        .goog-te-banner-frame,
+        .goog-te-ftab,
         #google_translate_element {
-            font-size: 13px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        /* Estiliza o widget do Google Translate */
-        .goog-te-combo {
-            margin: 0;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 20px;
-            background: rgba(247, 246, 243, 0.8);
-            font-size: 13px;
-            color: #37352f;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            outline: none;
-            min-width: 140px;
-        }
-        .goog-te-combo:hover {
-            background: rgba(247, 246, 243, 1);
-            transform: scale(1.02);
-        }
-        .goog-te-combo:focus {
-            background: rgba(247, 246, 243, 1);
-            box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3);
-        }
-        /* Remove elementos desnecessários do Google Translate */
-        .goog-te-gadget {
-            font-family: inherit !important;
-        }
-        .goog-te-gadget .goog-te-combo {
-            margin: 0 !important;
-        }
-        .goog-logo-link {
             display: none !important;
-        }
-        .goog-te-gadget .goog-te-combo option {
-            background: white;
-            color: #37352f;
-        }
-        /* Remove apenas elementos visuais, mantém funcionalidade */
-        .goog-te-banner-frame {
-            display: none !important;
-        }
-        .goog-te-ftab {
-            display: none !important;
+            visibility: hidden !important;
         }
         body {
             top: 0 !important;
-        }
-        body.translated-ltr,
-        body.translated-rtl {
-            margin-top: 0 !important;
-        }
-        /* Estilo personalizado para o dropdown funcional */
-        .goog-te-gadget {
-            font-family: inherit !important;
-            font-size: inherit !important;
-        }
-        .goog-te-gadget-simple {
-            background-color: transparent !important;
-            border: none !important;
-            font-size: inherit !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value {
-            color: #37352f !important;
-            font-size: 13px !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value span {
-            color: #37352f !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value:before {
-            content: "🌐 ";
-            margin-right: 5px;
-        }
-        .goog-te-combo {
-            margin: 0 !important;
-            padding: 8px 12px !important;
-            border: none !important;
-            border-radius: 20px !important;
-            background: rgba(247, 246, 243, 0.8) !important;
-            font-size: 13px !important;
-            color: #37352f !important;
-            cursor: pointer !important;
-            outline: none !important;
-            min-width: 140px !important;
-        }
-        .goog-te-combo:hover {
-            background: rgba(247, 246, 243, 1) !important;
-            transform: scale(1.02);
-        }
-        .goog-te-combo:focus {
-            background: rgba(247, 246, 243, 1) !important;
-            box-shadow: 0 0 0 2px rgba(255, 120, 73, 0.3) !important;
         }
         .app-info {
             background: #e3f2fd;
@@ -270,10 +195,7 @@
     </style>
 </head>
 <body>
-    <!-- Widget de Tradução -->
-    <div class="translate-widget">
-        <div id="google_translate_element"></div>
-    </div>
+
     
     <div class="banner"></div>
 
